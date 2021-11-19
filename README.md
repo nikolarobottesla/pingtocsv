@@ -3,6 +3,7 @@ ping to csv
 
 ## features
 * runs ping once then waits 5 seconds
+* captures the date time for each ping
 * saves the output to a .csv file
 
 ## windows executable

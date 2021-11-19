@@ -1,4 +1,5 @@
 import csv
+import datetime
 import json
 import time
 from os.path import exists
@@ -32,9 +33,11 @@ def main():
         count = 0
     
     while(1):
+        current_datetime = datetime.datetime.now()
         result = transmitter.ping()
         result_dict = ping_parser.parse(result).as_dict()
         result_subset = {
+            "date time": current_datetime.strftime('%x %X'),
             "destination": result_dict["destination"],
             "packet_receive": result_dict["packet_receive"],
             "packet_loss_count": result_dict["packet_loss_count"],
@@ -45,7 +48,7 @@ def main():
         data_file = open(f'{CSV_FILENAME}.csv', 'a', newline='')
         # create the csv writer object
         csv_writer = csv.writer(data_file)
-        
+
         if count == 0:
             # Writing headers of CSV file
             header = result_subset.keys()
