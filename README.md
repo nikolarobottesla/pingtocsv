@@ -7,8 +7,8 @@ ping to csv
 * saves the output to a .csv file
 
 ## arguments
-* input arg for ip ```--ip```
-* input arg for wait time in seconds ```--wait```
+* input arg for ip ```--ip```, default is google's DNS (8.8.8.8)
+* input arg for wait time in seconds ```--wait```, default is 5 seconds
 * input arg for csv file name ```-n```
 * example: ```pingtocsv.exe --ip 192.168.1.1 --wait 10 -n "ping results"```  
 
