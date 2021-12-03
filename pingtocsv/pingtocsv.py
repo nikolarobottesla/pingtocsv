@@ -41,10 +41,10 @@ def main(args={}):
         result_dict = ping_parser.parse(result).as_dict()
         result_subset = {
             "date time": current_datetime.strftime('%x %X'),
+            "rtt_avg": result_dict["rtt_avg"],
             "destination": result_dict["destination"],
             "packet_receive": result_dict["packet_receive"],
             "packet_loss_count": result_dict["packet_loss_count"],
-            "rtt_avg": result_dict["rtt_avg"],
         }
 
         # now we will open a file for writing
