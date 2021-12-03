@@ -1,3 +1,4 @@
+import argparse
 import csv
 import datetime
 import json
@@ -17,16 +18,18 @@ TO_KEEP = {
     "rtt_avg",
 }
 
-def main():
+def main(args={}):
+
+    csv_filename = args.get('n', CSV_FILENAME)
 
     ping_parser = pingparsing.PingParsing()
     transmitter = pingparsing.PingTransmitter()
-    transmitter.destination = GOOGLE_DNS
+    transmitter.destination = args.get('ip', GOOGLE_DNS)
     transmitter.count = 1
     
     # Counter variable used for writing
     # headers to the CSV file
-    file_exists = exists(f'{CSV_FILENAME}.csv')
+    file_exists = exists(f'{csv_filename}.csv')
     if file_exists:
         count = 1
     else:
@@ -45,7 +48,7 @@ def main():
         }
 
         # now we will open a file for writing
-        data_file = open(f'{CSV_FILENAME}.csv', 'a', newline='')
+        data_file = open(f'{csv_filename}.csv', 'a', newline='')
         # create the csv writer object
         csv_writer = csv.writer(data_file)
 
@@ -61,8 +64,18 @@ def main():
 
         print(json.dumps(result_subset, indent=4))
         
-        time.sleep(INTERVAL_S)
+        time.sleep(args.get('wait', INTERVAL_S))
     
     
 if __name__ == '__main__':
-    main()
+
+    parser = argparse.ArgumentParser(description='ping and log to a csv')
+    parser.add_argument('--ip', type=str, default=argparse.SUPPRESS,
+                        help='IP address to ping')
+    parser.add_argument('--wait', type=int, default=argparse.SUPPRESS,
+                        help='after ping returns, seconds to wait before next ping')
+    parser.add_argument('-n', type=str, default=argparse.SUPPRESS,
+                    help='name of csv file excluding .csv')
+    args = vars(parser.parse_args())
+
+    main(args)

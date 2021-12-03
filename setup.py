@@ -8,7 +8,7 @@ import subprocess
 from setuptools import setup, find_packages
 
 NAME = 'pingtocsv'
-VERSION = '0.2.0'
+VERSION = '1.0.0'
 LICENSE = 'MIT'
 AUTHOR = 'Milo Oien-Rochat'
 AUTHOR_EMAIL = 'nikolarobottesla@github.com'

@@ -6,6 +6,12 @@ ping to csv
 * captures the date time for each ping
 * saves the output to a .csv file
 
+## arguments
+* input arg for ip ```--ip```
+* input arg for wait time in seconds ```--wait```
+* input arg for csv file name ```-n```
+* example: ```pingtocsv.exe --ip 192.168.1.1 --wait 10 -n "ping results"```  
+
 ## windows executable
 download exe from releases and double click
 
@@ -15,5 +21,4 @@ download exe from releases and double click
 * `pyinstaller --onefile pingtocsv/pingtocsv.py` 
 
 ## to do
-* input arguments
 * multi-platform builds
